@@ -1,0 +1,47 @@
+method.get_class_name:Lcom/alexkang/bluechat/ClientActivity; method.get_name():startDeviceSearch method.get_descriptor():()V
+startDeviceSearch-BB@0x0 0 36 [ NEXT = ][ PREV = ]
+     		 0 ins.get_name():iget-object ins.get_output():v1, v3, Lcom/alexkang/bluechat/ClientActivity;->mBluetoothAdapter Landroid/bluetooth/BluetoothAdapter;
+     		 4 ins.get_name():invoke-virtual ins.get_output():v1, Landroid/bluetooth/BluetoothAdapter;->enable()Z
+     		 a ins.get_name():new-instance ins.get_output():v0, Landroid/content/IntentFilter;
+     		 e ins.get_name():const-string ins.get_output():v1, 'android.bluetooth.device.action.FOUND'
+     		 12 ins.get_name():invoke-direct ins.get_output():v0, v1, Landroid/content/IntentFilter;-><init>(Ljava/lang/String;)V
+     		 18 ins.get_name():iget-object ins.get_output():v1, v3, Lcom/alexkang/bluechat/ClientActivity;->mReceiver Landroid/content/BroadcastReceiver;
+     		 1c ins.get_name():invoke-virtual ins.get_output():v3, v1, v0, Lcom/alexkang/bluechat/ClientActivity;->registerReceiver(Landroid/content/BroadcastReceiver; Landroid/content/IntentFilter;)Landroid/content/Intent;
+     		 22 ins.get_name():new-instance ins.get_output():v1, Lcom/alexkang/bluechat/ClientActivity$WaitForBluetoothThread;
+     		 26 ins.get_name():const/4 ins.get_output():v2, 0
+     		 28 ins.get_name():invoke-direct ins.get_output():v1, v3, v2, Lcom/alexkang/bluechat/ClientActivity$WaitForBluetoothThread;-><init>(Lcom/alexkang/bluechat/ClientActivity; Lcom/alexkang/bluechat/ClientActivity$1;)V
+     		 2e ins.get_name():invoke-virtual ins.get_output():v1, Lcom/alexkang/bluechat/ClientActivity$WaitForBluetoothThread;->start()V
+     		 34 ins.get_name():return-void ins.get_output():
+
+method.get_class_name:Lcom/alexkang/bluechat/ClientActivity$1; method.get_name():onReceive method.get_descriptor():(Landroid/content/Context; Landroid/content/Intent;)V
+onReceive-BB@0x0 0 18 [ NEXT = 14-18-onReceive-BB@0x18, 14-6c-onReceive-BB@0x6c][ PREV = ]
+     		 0 ins.get_name():invoke-virtual ins.get_output():v7, Landroid/content/Intent;->getAction()Ljava/lang/String;
+     		 6 ins.get_name():move-result-object ins.get_output():v0
+     		 8 ins.get_name():const-string ins.get_output():v3, 'android.bluetooth.device.action.FOUND'
+     		 c ins.get_name():invoke-virtual ins.get_output():v3, v0, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+     		 12 ins.get_name():move-result ins.get_output():v3
+     		 14 ins.get_name():if-eqz ins.get_output():v3, +2c
+   
+onReceive-BB@0x18 18 58 [ NEXT = 54-58-onReceive-BB@0x58, 54-6c-onReceive-BB@0x6c][ PREV = onReceive-BB@0x0]
+     		 18 ins.get_name():const-string ins.get_output():v3, 'android.bluetooth.device.extra.DEVICE'
+     		 1c ins.get_name():invoke-virtual ins.get_output():v7, v3, Landroid/content/Intent;->getParcelableExtra(Ljava/lang/String;)Landroid/os/Parcelable;
+     		 22 ins.get_name():move-result-object ins.get_output():v1
+     		 24 ins.get_name():check-cast ins.get_output():v1, Landroid/bluetooth/BluetoothDevice;
+     		 28 ins.get_name():invoke-virtual ins.get_output():v1, Landroid/bluetooth/BluetoothDevice;->getBluetoothClass()Landroid/bluetooth/BluetoothClass;
+     		 2e ins.get_name():move-result-object ins.get_output():v3
+     		 30 ins.get_name():invoke-virtual ins.get_output():v3, Landroid/bluetooth/BluetoothClass;->getDeviceClass()I
+     		 36 ins.get_name():move-result ins.get_output():v2
+     		 38 ins.get_name():iget-object ins.get_output():v3, v5, Lcom/alexkang/bluechat/ClientActivity$1;->this$0 Lcom/alexkang/bluechat/ClientActivity;
+     		 3c ins.get_name():invoke-static ins.get_output():v3, Lcom/alexkang/bluechat/ClientActivity;->access$000(Lcom/alexkang/bluechat/ClientActivity;)Ljava/util/ArrayList;
+     		 42 ins.get_name():move-result-object ins.get_output():v3
+     		 44 ins.get_name():invoke-static ins.get_output():v2, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+     		 4a ins.get_name():move-result-object ins.get_output():v4
+     		 4c ins.get_name():invoke-virtual ins.get_output():v3, v4, Ljava/util/ArrayList;->contains(Ljava/lang/Object;)Z
+     		 52 ins.get_name():move-result ins.get_output():v3
+     		 54 ins.get_name():if-eqz ins.get_output():v3, +c
+   
+onReceive-BB@0x58 58 6c [ NEXT = 66-6c-onReceive-BB@0x6c][ PREV = onReceive-BB@0x18]
+     		 58 ins.get_name():new-instance ins.get_output():v3, Lcom/alexkang/bluechat/ClientActivity$ConnectThread;
+   
+onReceive-BB@0x6c 6c 6e [ NEXT = ][ PREV = onReceive-BB@0x0, onReceive-BB@0x18, onReceive-BB@0x58]
+     		 6c ins.get_name():return-void ins.get_output():
